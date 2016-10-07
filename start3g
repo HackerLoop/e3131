@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if lsusb | grep -q '12d1:1f01'; then
+  usb_modeswitch -v 12d1 -p 1f01 -M 55534243123456780000000000000a11062000000000000100000000000000
+  exit
+fi
+
+if lsusb | grep -q '12d1:14dc'; then
+  echo 'Device switched, sleeping 20min'
+  sleep 1200
+  exit
+fi
+
+echo 'Missing device.'
